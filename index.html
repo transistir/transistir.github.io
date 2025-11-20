@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos de transistir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-light: #666666;
+            --border-color: #e0e0e0;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .language-toggle {
+            margin-top: 20px;
+        }
+
+        .language-toggle button {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .language-toggle button:hover {
+            background: #2980b9;
+        }
+
+        .language-toggle button.active {
+            background: var(--primary-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .project-link:hover {
+            background: #2980b9;
+        }
+
+        .project-notes {
+            margin-top: 15px;
+        }
+
+        .project-notes label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .project-notes textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .project-notes textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .project-notes textarea:disabled {
+            background-color: #f5f5f5;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .project-notes textarea:disabled:hover {
+            border-color: var(--secondary-color);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 data-i18n="title">Projetos de transistir</h1>
+            <div class="language-toggle">
+                <button class="active" onclick="changeLanguage('pt')">Português</button>
+                <button onclick="changeLanguage('en')">English</button>
+            </div>
+        </header>
+
+        <div class="projects-grid" id="projectsGrid">
+            <!-- 
+            ============================================
+            COMO ADICIONAR NOVOS PROJETOS:
+            ============================================
+            
+            1. Adicione um novo objeto ao array 'projects' no JavaScript abaixo
+               seguindo este formato:
+            
+            {
+                id: 'nome-do-projeto',
+                title: {
+                    pt: 'Título em Português',
+                    en: 'Title in English'
+                },
+                description: {
+                    pt: 'Descrição em português do projeto...',
+                    en: 'Description in English of the project...'
+                },
+                image: 'nome-da-imagem.png',
+                repository: 'https://github.com/transistir/nome-do-repositorio',
+                notes: {
+                    pt: '', // Suas notas pessoais em português (opcional)
+                    en: ''  // Suas notas pessoais em inglês (opcional)
+                }
+            }
+            
+            2. Adicione a imagem do projeto na pasta raiz do repositório
+               (ou ajuste o caminho da imagem conforme necessário)
+            
+            3. Os cards serão gerados automaticamente pelo JavaScript
+            ============================================
+            -->
+        </div>
+
+        <footer>
+            <p data-i18n="footer">Página gerada automaticamente | GitHub Pages</p>
+        </footer>
+    </div>
+
+    <script>
+        // Dados dos projetos
+        const projects = [
+            {
+                id: 'cadeiadominial',
+                title: {
+                    pt: 'CadeiaDominial',
+                    en: 'CadeiaDominial'
+                },
+                description: {
+                    pt: 'Ferramenta para análise de cadeias dominiais',
+                    en: 'Tool for analyzing domain chains'
+                },
+                image: 'cadeiadominial-screenshot.png',
+                repository: 'https://github.com/transistir/CadeiaDominial',
+                notes: {
+                    pt: '',
+                    en: ''
+                }
+            },
+            {
+                id: 'kutary',
+                title: {
+                    pt: 'Kutary',
+                    en: 'Kutary'
+                },
+                description: {
+                    pt: 'Aplicação completa com frontend (Kutary_app) e backend (Kutary_db)',
+                    en: 'Complete application with frontend (Kutary_app) and backend (Kutary_db)'
+                },
+                image: 'kutary-screenshot.png',
+                repository: 'https://github.com/transistir/Kutary_app',
+                notes: {
+                    pt: '',
+                    en: ''
+                }
+            },
+            {
+                id: 'ia-local-audio',
+                title: {
+                    pt: 'IA Local Audio',
+                    en: 'Local AI Audio'
+                },
+                description: {
+                    pt: 'Sistema de processamento de áudio com inteligência artificial local',
+                    en: 'Audio processing system with local artificial intelligence'
+                },
+                image: 'ia-local-audio-screenshot.png',
+                repository: 'https://github.com/transistir/ia-local-audio',
+                notes: {
+                    pt: '',
+                    en: ''
+                }
+            }
+        ];
+
+        // Textos de interface traduzidos
+        const translations = {
+            pt: {
+                title: 'Projetos de transistir',
+                footer: 'Página gerada automaticamente | GitHub Pages',
+                notesLabel: 'Notas pessoais:',
+                notesPlaceholder: 'Clique para adicionar suas notas pessoais sobre este projeto...',
+                viewRepository: 'Ver no GitHub',
+                imageNotFound: 'Imagem não encontrada'
+            },
+            en: {
+                title: 'transistir Projects',
+                footer: 'Auto-generated page | GitHub Pages',
+                notesLabel: 'Personal notes:',
+                notesPlaceholder: 'Click to add your personal notes about this project...',
+                viewRepository: 'View on GitHub',
+                imageNotFound: 'Image not found'
+            }
+        };
+
+        let currentLanguage = 'pt';
+
+        // Função para mudar o idioma
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Atualiza botões de idioma
+            document.querySelectorAll('.language-toggle button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Atualiza textos da interface
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Recria os cards com o novo idioma
+            renderProjects();
+        }
+
+        // Função para renderizar os projetos
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+            grid.innerHTML = '';
+            
+            projects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                
+                const imageHtml = `
+                    <div class="project-image">
+                        <img 
+                            src="${project.image}" 
+                            alt="${project.title[currentLanguage]}"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='${translations[currentLanguage].imageNotFound}'"
+                        >
+                    </div>
+                `;
+                
+                const notesValue = project.notes[currentLanguage] || '';
+                const notesPlaceholder = translations[currentLanguage].notesPlaceholder;
+                
+                card.innerHTML = `
+                    ${imageHtml}
+                    <div class="project-content">
+                        <h2 class="project-title">${project.title[currentLanguage]}</h2>
+                        <p class="project-description">${project.description[currentLanguage]}</p>
+                        <a href="${project.repository}" target="_blank" rel="noopener noreferrer" class="project-link">
+                            ${translations[currentLanguage].viewRepository}
+                        </a>
+                        <div class="project-notes">
+                            <label>${translations[currentLanguage].notesLabel}</label>
+                            <textarea 
+                                id="notes-${project.id}" 
+                                placeholder="${notesPlaceholder}"
+                                ${notesValue ? '' : 'disabled'}
+                            >${notesValue}</textarea>
+                        </div>
+                    </div>
+                `;
+                
+                // Adiciona evento para tornar o textarea editável ao clicar
+                const textarea = card.querySelector('textarea');
+                if (textarea.disabled) {
+                    textarea.addEventListener('click', function() {
+                        this.disabled = false;
+                        this.focus();
+                    });
+                }
+                
+                // Salva as notas quando o usuário sair do campo
+                textarea.addEventListener('blur', function() {
+                    if (this.value.trim() === '') {
+                        this.disabled = true;
+                    }
+                    // Aqui você pode adicionar lógica para salvar as notas
+                    // Por exemplo, usando localStorage:
+                    saveNotes(project.id, this.value);
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Função para salvar notas (usando localStorage)
+        function saveNotes(projectId, notes) {
+            const key = `project-notes-${projectId}-${currentLanguage}`;
+            localStorage.setItem(key, notes);
+            
+            // Atualiza o objeto do projeto
+            const project = projects.find(p => p.id === projectId);
+            if (project) {
+                project.notes[currentLanguage] = notes;
+            }
+        }
+
+        // Função para carregar notas salvas
+        function loadNotes() {
+            projects.forEach(project => {
+                ['pt', 'en'].forEach(lang => {
+                    const key = `project-notes-${project.id}-${lang}`;
+                    const savedNotes = localStorage.getItem(key);
+                    if (savedNotes) {
+                        project.notes[lang] = savedNotes;
+                    }
+                });
+            });
+        }
+
+        // Inicialização
+        loadNotes();
+        renderProjects();
+    </script>
+</body>
+</html>
+
