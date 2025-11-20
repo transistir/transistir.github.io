@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projetos de transistir</title>
+    <title>Transistir</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -25,7 +28,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
@@ -39,14 +42,93 @@
 
         header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 30px 0;
+            margin-bottom: 60px;
+            padding: 40px 0;
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+        }
+
+        .logo-container img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
         }
 
         header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-light);
+            font-weight: 300;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .about-section {
+            margin: 50px 0;
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-section p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-link {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.2s ease;
+            font-size: 1.1rem;
+        }
+
+        .about-link:hover {
+            background: #1a252f;
+            transform: translateY(-2px);
+        }
+
+        .projects-section {
+            margin-top: 60px;
+        }
+
+        .projects-section h2 {
+            font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             color: var(--primary-color);
-            margin-bottom: 10px;
+            text-align: center;
+            margin-bottom: 40px;
             font-weight: 700;
         }
 
@@ -203,7 +285,15 @@
 
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .logo-container img {
+                max-width: 150px;
             }
 
             .projects-grid {
@@ -214,20 +304,40 @@
             body {
                 padding: 15px;
             }
+
+            .about-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .projects-section h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 data-i18n="title">Projetos de transistir</h1>
+            <div class="logo-container">
+                <img src="transistir-branco.png" alt="Transistir" onerror="this.style.display='none'">
+            </div>
+            <h1>Transistir</h1>
+            <p class="subtitle" data-i18n="subtitle">Não um corpo que se opõe até se esgotar, mas um corpo que se deixa atravessar para reconfigurar o campo</p>
             <div class="language-toggle">
                 <button class="active" onclick="changeLanguage('pt')">Português</button>
                 <button onclick="changeLanguage('en')">English</button>
             </div>
         </header>
 
-        <div class="projects-grid" id="projectsGrid">
+        <div class="about-section">
+            <h2 data-i18n="aboutTitle">Sobre</h2>
+            <p data-i18n="aboutText">Conheça o manifesto que inspira nossos projetos e nossa forma de pensar tecnologia, resistência e transformação.</p>
+            <a href="manifesto.html" class="about-link" data-i18n="readManifesto">Ler Manifesto</a>
+        </div>
+
+        <div class="projects-section">
+            <h2 data-i18n="projectsTitle">Projetos</h2>
+            <div class="projects-grid" id="projectsGrid">
             <!-- 
             ============================================
             COMO ADICIONAR NOVOS PROJETOS:
@@ -260,6 +370,7 @@
             3. Os cards serão gerados automaticamente pelo JavaScript
             ============================================
             -->
+            </div>
         </div>
 
         <footer>
@@ -326,7 +437,11 @@
         // Textos de interface traduzidos
         const translations = {
             pt: {
-                title: 'Projetos de transistir',
+                subtitle: 'Não um corpo que se opõe até se esgotar, mas um corpo que se deixa atravessar para reconfigurar o campo',
+                aboutTitle: 'Sobre',
+                aboutText: 'Conheça o manifesto que inspira nossos projetos e nossa forma de pensar tecnologia, resistência e transformação.',
+                readManifesto: 'Ler Manifesto',
+                projectsTitle: 'Projetos',
                 footer: 'Página gerada automaticamente | GitHub Pages',
                 notesLabel: 'Notas pessoais:',
                 notesPlaceholder: 'Clique para adicionar suas notas pessoais sobre este projeto...',
@@ -334,7 +449,11 @@
                 imageNotFound: 'Imagem não encontrada'
             },
             en: {
-                title: 'transistir Projects',
+                subtitle: 'Not a body that opposes until it is exhausted, but a body that lets itself be crossed to reconfigure the field',
+                aboutTitle: 'About',
+                aboutText: 'Learn about the manifesto that inspires our projects and our way of thinking about technology, resistance and transformation.',
+                readManifesto: 'Read Manifesto',
+                projectsTitle: 'Projects',
                 footer: 'Auto-generated page | GitHub Pages',
                 notesLabel: 'Personal notes:',
                 notesPlaceholder: 'Click to add your personal notes about this project...',
@@ -352,8 +471,11 @@
             // Atualiza botões de idioma
             document.querySelectorAll('.language-toggle button').forEach(btn => {
                 btn.classList.remove('active');
+                if ((lang === 'pt' && btn.textContent === 'Português') || 
+                    (lang === 'en' && btn.textContent === 'English')) {
+                    btn.classList.add('active');
+                }
             });
-            event.target.classList.add('active');
             
             // Atualiza textos da interface
             document.querySelectorAll('[data-i18n]').forEach(element => {
