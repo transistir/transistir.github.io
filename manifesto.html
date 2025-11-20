@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifesto a Transistência</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --bg-color: #f8f9fa;
+            --text-color: #333333;
+            --text-light: #666666;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header .author {
+            color: var(--text-light);
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        .language-toggle {
+            margin-top: 20px;
+        }
+
+        .language-toggle button {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .language-toggle button:hover {
+            background: #2980b9;
+        }
+
+        .language-toggle button.active {
+            background: var(--primary-color);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .back-link:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        .content {
+            font-size: 1.1rem;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .content h3 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .content strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .content em {
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        .intro {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f0f4f8;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link" data-i18n="back">← Voltar</a>
+        
+        <div class="header">
+            <h1 data-i18n="title">Manifesto a Transistência</h1>
+            <p class="author" data-i18n="author">por Hiure Queiroz</p>
+            <div class="language-toggle">
+                <button class="active" onclick="changeLanguage('pt')">Português</button>
+                <button onclick="changeLanguage('en')">English</button>
+            </div>
+        </div>
+
+        <div class="content" id="manifestoContent">
+            <!-- Conteúdo será inserido pelo JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            pt: {
+                back: "← Voltar",
+                title: "Manifesto a Transistência",
+                author: "por Hiure Queiroz"
+            },
+            en: {
+                back: "← Back",
+                title: "Manifesto to Transistence",
+                author: "by Hiure Queiroz"
+            }
+        };
+
+        const manifesto = {
+            pt: {
+                title: "Manifesto a Transistência",
+                author: "por Hiure Queiroz",
+                content: `
+                    <p class="intro">Pensando que palavras não são só signos, mas também ferramentas de moldar o mundo, elas nos permitem nomear o que sentimos, articular o que vemos, imaginar o que ainda não existe. As palavras são também importantes ferramentas na articulação do pensamento científico, mas diferente dos números que são exatos, muitas das palavras usadas no universo técnico são também usadas para nomear processos da vida cotidiana.</p>
+
+                    <p>Por exemplo, a velha conhecida palavra <strong>resistência</strong>. Resistir ao capital, à colonização, ao apagamento, à extração. Resistir é como um verbo de sobrevivência. Mas, no universo da eletrônica resistência está entre correntes e tensões. Enquanto é verdade que resistir salva vidas, na eletrônica, o resistor como componente que resiste, se vê deteriorado diante de tamanho esforço para transformar corrente em calor.</p>
+
+                    <p>Tomando-se as licenças necessárias de elucubração na baixa teoria e inspirado na relação resistor/resistência, um experimento mental com outro componente eletrônico, o transistor, nos leva a ideia de <strong>transistência</strong>. Diferente da resistência que é uma grandeza do componente resistor, a transistência não é uma grandeza do componente transistor. A transistência é uma apropriação crítica de um conceito técnico, passível de inspirar um comportamento coletivo mais elaborado: uma forma de existência que não apenas se opõe ao que oprime, mas que também modula, transforma e redireciona as forças que nos atravessam.</p>
+
+                    <p>Para navegar entre significados, é necessária a apropriação de fundamentos da eletrônica, não como especialistas, mas como seres que habitam um mundo cada vez mais mediado por circuitos eletrônicos.</p>
+
+                    <h2>Do resistor ao transistor: uma virada cognitiva</h2>
+
+                    <p>Desde Galileu, o ser humano usa ferramentas como extensões da própria cognição. O telescópio de Galileu não ampliou apenas a visão; a partir desse olhar aumentado ele ampliou e estruturou as formas de fazer ciência. Muitas outras ferramentas se desenvolveram de forma a nos fazer ver o que até então estava invisível. As ferramentas eram neste caso, lentes que tornavam o mundo mais compreensível.</p>
+
+                    <p>De forma que o tempo avança, as ferramentas foram capazes de ver cada vez mais longe, cada vez mais perto, cada vez mais rápido. Inspiraram a criação de máquinas de produção em massa. E com o advento do neoliberalismo foram criadas tecnologias de bolso popularizadas ao redor do mundo. Os dispositivos digitais que tomaram o lugar das ferramentas para ampliação da cognição, passam a deixá-la cada vez mais turva. Em vez de ampliar nossa percepção, capturam nossa atenção. Em vez de expandir nosso tempo, o fragmentam. Em vez de conectar, isolam em bolhas algorítmicas.</p>
+
+                    <p>É nesse contexto que olhamos para dois componentes eletrônicos fundamentais: o resistor e o transistor.</p>
+
+                    <p>O <strong>resistor</strong> é um componente eletrônico cuja função é limitar o fluxo de corrente elétrica em um circuito. A corrente, ao passar pelo resistor, é reduzida, pois parte dela foi transformada em calor. O resistor controla a corrente, protege os componentes, cria obstáculo ao fluxo. Mas o processo de transformar corrente elétrica em calor consome energia e, sob estresse prolongado, queima. O efeito Joule não perdoa: quanto mais intensa a passagem de energia, mais o resistor se desgasta até se romper.</p>
+
+                    <p>Já o <strong>transistor</strong>, tem outra dinâmica de funcionamento. Inventado em 1947, ele representou uma revolução na computação substituindo as volumosas válvulas. Enquanto o resistor resiste a corrente, o transistor tem a capacidade de moldar a corrente. Um transistor pode amplificar um sinal fraco, pode atuar como interruptor, pode controlar grandes fluxos de energia com mínima entrada, ele está no coração de todos os computadores, celulares e redes. Mas, mais que isso, o transistor não se queima com a passagem da corrente. Ele transfere resistência, amplifica e redireciona a energia.</p>
+
+                    <p>Assim o transistor se comporta como uma porta inteligente, um nó de transformação. Ele permite que um sinal fraco comande um fluxo poderoso. Ele é a base de toda computação moderna, é verdade, mas também uma metáfora política urgente.</p>
+
+                    <p>Durante muito tempo, nossas lutas foram pensadas como resistências, mas se voltarmos a fazer aquele encontro entre linguagens — a técnica e a política, a eletrônica e o cotidiano — não parece viável nos mantermos somente em modo de resistência.</p>
+
+                    <p>Daí surge o conceito de <strong>Transistência</strong>, não mais uma postura de oposição pura, mas de transresistência ativa. Não um "não" fixo, mas um "como?" e "pra onde?", em inevitável movimento. <em>Não um corpo que se opõe até se esgotar, mas um corpo que se deixa atravessar para reconfigurar o campo.</em></p>
+
+                    <p>A transistência, não se opõe apenas ao que é, mas reorganiza as condições do possível.</p>
+
+                    <h2>Transistir a máquina que nos atravessa</h2>
+
+                    <p>Nossos corpos, mentes e relações já são híbridos técnico-biológicos. Usamos ferramentas que carregam os algoritmos que fazem escolhas por nós, ferramentas para o monitoramento que perdemos de nós mesmos. A máquina não está mais "lá fora", ela já habita nossa cognição.</p>
+
+                    <p>Mas diante do inevitável, há dois caminhos:</p>
+
+                    <p>ou usamos a máquina como nebulizador dos nossos pensamento e percepção, nos tornando reativos, dispersos, disponíveis o tempo todo no aplicativo de mensagens instantâneas.</p>
+
+                    <p>ou usamos a máquina como lente novamente, como Galileu, para tornar o mundo mais nítido, deixando de ser dominado pela nébula do negacionismo que imperava pelo dogma religioso, que agora volta a imperar através da máquina colonial.</p>
+
+                    <p>O componente transistor tem uma base, que precisa de um resistor polarizando-a. É como se essa polarização o direcionasse em sua missão no circuito. Assim como em um circuito eletrônico os movimentos de transistência precisam ser polarizados pelos movimentos de resistência para moldar a máquina que nos atravessa.</p>
+
+                    <p>A transistência se manifesta nos quilombos digitais que tecem infraestruturas próprias de comunicação; Nas redes comunitárias que criam sua própria infraestrutura de comunicação; Nos coletivos de tecnologia feminista que reprogramam o desejo fora da lógica da extração; Nos movimentos indígenas que desenvolvem seus próprios servidores locais para demarcação das telas. Nas agroflorestas que curam o solo e o espírito ao mesmo tempo.</p>
+
+                    <p>A dialógica com os movimentos, nas redes e nos circuitos da vida, revela uma urgência: aprender a ler as ciências que nos atravessam. Não para nos tornarmos engenheiros do sistema, mas para nos tornarmos técnicos da transformação. Quanto mais entendermos os princípios que regem as máquinas que habitam nosso cotidiano, mais poderemos desmontar suas lógicas opressoras e reprogramar seus sentidos. A Transistência nasce desse encontro: entre o saber técnico e o desejo coletivo, entre a física dos semicondutores e a poética da organização. E é nessa zona de polissemia, onde um transistor pode ser ao mesmo tempo um componente e um gesto político, que se abre o espaço para sonhar com mundos que não apenas resistem à catástrofe, mas a atravessam, modulam e transformam – às transistem.</p>
+
+                    <p>Essa virada não é apenas teórica ou ao acaso, ela já acontece em casos mais palpáveis, em territórios onde a tecnologia deixa de ser imposta para se tornar coconstruída. Em nosso projeto de extensão com comunidades de agricultura familiar, por exemplo, desenvolvemos dispositivos de comunicação de baixo consumo que funcionam com baterias solares ou mesmo com energia extraída do ambiente. Como sensores que avisam, via rádio, quando uma cerca elétrica foi rompida por javalis, ou quando o nível de um tanque de irrigação está crítico. Esses aparelhos não precisam da nuvem, não coletam dados para vender, não exigem atualizações mensais. São feitos com componentes acessíveis (como transceptores LoRa ou transmissores FM analógicos), montados junto com os agricultores, em oficinas que misturam saberes técnicos e populares.</p>
+
+                    <p>É nesse gesto de projetar tecnologias que servem à vida e não ao lucro, que a Transistência se concretiza. Enquanto o modelo comercial extrai energia, dados e atenção para alimentar cadeias globais de valor, essas práticas relocalizam a inovação, tornando-a energeticamente frugal, socialmente útil e cognitivamente clara. Não se trata de recusar a ciência, mas de reorientá-la, ao invés de uma ciência que serve ao capital, uma ciência que serve aos territórios. E nesse movimento, o transistor deixa de ser apenas um componente e torna-se um símbolo do que é possível quando a tecnologia é feita com, e não para.</p>
+                `
+            },
+            en: {
+                title: "Manifesto to Transistence",
+                author: "by Hiure Queiroz",
+                content: `
+                    <p class="intro">Thinking that words are not just signs, but also tools for shaping the world, they allow us to name what we feel, articulate what we see, imagine what does not yet exist. Words are also important tools in the articulation of scientific thought, but unlike numbers which are exact, many of the words used in the technical universe are also used to name processes of everyday life.</p>
+
+                    <p>For example, the well-known word <strong>resistance</strong>. Resisting capital, colonization, erasure, extraction. To resist is like a verb of survival. But in the universe of electronics, resistance is between currents and voltages. While it is true that resisting saves lives, in electronics, the resistor as a component that resists, finds itself deteriorated in the face of such effort to transform current into heat.</p>
+
+                    <p>Taking the necessary licenses of speculation in low theory and inspired by the resistor/resistance relationship, a thought experiment with another electronic component, the transistor, leads us to the idea of <strong>transistence</strong>. Unlike resistance, which is a property of the resistor component, transistence is not a property of the transistor component. Transistence is a critical appropriation of a technical concept, capable of inspiring a more elaborate collective behavior: a form of existence that not only opposes what oppresses, but also modulates, transforms and redirects the forces that cross us.</p>
+
+                    <p>To navigate between meanings, it is necessary to appropriate the fundamentals of electronics, not as specialists, but as beings who inhabit a world increasingly mediated by electronic circuits.</p>
+
+                    <h2>From resistor to transistor: a cognitive turn</h2>
+
+                    <p>Since Galileo, humans have used tools as extensions of their own cognition. Galileo's telescope did not just amplify vision; from this enlarged view, he expanded and structured the ways of doing science. Many other tools developed to make us see what was until then invisible. In this case, the tools were lenses that made the world more comprehensible.</p>
+
+                    <p>As time advances, tools were able to see farther and farther, closer and closer, faster and faster. They inspired the creation of mass production machines. And with the advent of neoliberalism, pocket technologies were created and popularized around the world. Digital devices that took the place of tools for expanding cognition, now make it increasingly blurred. Instead of amplifying our perception, they capture our attention. Instead of expanding our time, they fragment it. Instead of connecting, they isolate in algorithmic bubbles.</p>
+
+                    <p>It is in this context that we look at two fundamental electronic components: the resistor and the transistor.</p>
+
+                    <p>The <strong>resistor</strong> is an electronic component whose function is to limit the flow of electric current in a circuit. The current, when passing through the resistor, is reduced, because part of it was transformed into heat. The resistor controls the current, protects components, creates obstacles to flow. But the process of transforming electric current into heat consumes energy and, under prolonged stress, burns. Joule's effect does not forgive: the more intense the passage of energy, the more the resistor wears out until it breaks.</p>
+
+                    <p>The <strong>transistor</strong>, on the other hand, has another dynamic of operation. Invented in 1947, it represented a revolution in computing by replacing bulky vacuum tubes. While the resistor resists current, the transistor has the ability to shape current. A transistor can amplify a weak signal, can act as a switch, can control large energy flows with minimal input, it is at the heart of all computers, cell phones and networks. But, more than that, the transistor does not burn with the passage of current. It transfers resistance, amplifies and redirects energy.</p>
+
+                    <p>Thus the transistor behaves like an intelligent gate, a node of transformation. It allows a weak signal to command a powerful flow. It is the basis of all modern computing, it is true, but also an urgent political metaphor.</p>
+
+                    <p>For a long time, our struggles were thought of as resistances, but if we return to making that encounter between languages — the technical and the political, electronics and everyday life — it does not seem viable to remain only in resistance mode.</p>
+
+                    <p>Hence the concept of <strong>Transistence</strong> emerges, no longer a posture of pure opposition, but of active trans-resistance. Not a fixed "no", but a "how?" and "where to?", in inevitable movement. <em>Not a body that opposes until it is exhausted, but a body that lets itself be crossed to reconfigure the field.</em></p>
+
+                    <p>Transistence does not only oppose what is, but reorganizes the conditions of the possible.</p>
+
+                    <h2>Transisting the machine that crosses us</h2>
+
+                    <p>Our bodies, minds and relationships are already techno-biological hybrids. We use tools that carry algorithms that make choices for us, tools for monitoring that we have lost of ourselves. The machine is no longer "out there", it already inhabits our cognition.</p>
+
+                    <p>But in the face of the inevitable, there are two paths:</p>
+
+                    <p>either we use the machine as a nebulizer of our thoughts and perception, becoming reactive, dispersed, available all the time on instant messaging applications.</p>
+
+                    <p>or we use the machine as a lens again, like Galileo, to make the world clearer, ceasing to be dominated by the nebula of denialism that prevailed through religious dogma, which now returns to prevail through the colonial machine.</p>
+
+                    <p>The transistor component has a base, which needs a resistor polarizing it. It is as if this polarization directs it in its mission in the circuit. Just as in an electronic circuit, transistence movements need to be polarized by resistance movements to shape the machine that crosses us.</p>
+
+                    <p>Transistence manifests itself in digital quilombos that weave their own communication infrastructures; In community networks that create their own communication infrastructure; In feminist technology collectives that reprogram desire outside the logic of extraction; In indigenous movements that develop their own local servers for screen demarcation. In agroforests that heal soil and spirit at the same time.</p>
+
+                    <p>The dialogic with movements, in networks and in the circuits of life, reveals an urgency: to learn to read the sciences that cross us. Not to become engineers of the system, but to become technicians of transformation. The more we understand the principles that govern the machines that inhabit our daily lives, the more we can dismantle their oppressive logics and reprogram their meanings. Transistence is born from this encounter: between technical knowledge and collective desire, between the physics of semiconductors and the poetics of organization. And it is in this zone of polysemy, where a transistor can be both a component and a political gesture, that space opens up to dream of worlds that not only resist catastrophe, but cross it, modulate and transform it – they transist.</p>
+
+                    <p>This turn is not just theoretical or by chance, it already happens in more tangible cases, in territories where technology ceases to be imposed to become co-constructed. In our extension project with family farming communities, for example, we develop low-consumption communication devices that work with solar batteries or even with energy extracted from the environment. Like sensors that warn, via radio, when an electric fence has been broken by wild boars, or when the level of an irrigation tank is critical. These devices do not need the cloud, do not collect data to sell, do not require monthly updates. They are made with accessible components (such as LoRa transceivers or analog FM transmitters), assembled together with farmers, in workshops that mix technical and popular knowledge.</p>
+
+                    <p>It is in this gesture of designing technologies that serve life and not profit that Transistence is concretized. While the commercial model extracts energy, data and attention to feed global value chains, these practices relocate innovation, making it energetically frugal, socially useful and cognitively clear. It is not about refusing science, but about reorienting it, instead of a science that serves capital, a science that serves territories. And in this movement, the transistor ceases to be just a component and becomes a symbol of what is possible when technology is made with, and not for.</p>
+                `
+            }
+        };
+
+        let currentLanguage = 'pt';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Atualiza botões de idioma
+            document.querySelectorAll('.language-toggle button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === (lang === 'pt' ? 'Português' : 'English')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Atualiza textos da interface
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                } else if (manifesto[lang] && manifesto[lang][key]) {
+                    element.textContent = manifesto[lang][key];
+                }
+            });
+            
+            // Atualiza link de voltar
+            const backLink = document.querySelector('.back-link');
+            if (backLink && translations[lang]) {
+                backLink.textContent = translations[lang].back;
+            }
+            
+            // Atualiza conteúdo
+            document.getElementById('manifestoContent').innerHTML = manifesto[lang].content;
+        }
+
+        // Inicialização
+        document.getElementById('manifestoContent').innerHTML = manifesto[currentLanguage].content;
+    </script>
+</body>
+</html>
+
