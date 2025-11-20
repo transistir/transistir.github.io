@@ -26,6 +26,7 @@
             color: var(--text-color);
             line-height: 1.8;
             padding: 20px;
+            position: relative;
         }
 
         .container {
@@ -42,6 +43,7 @@
             margin-bottom: 40px;
             padding-bottom: 30px;
             border-bottom: 2px solid var(--border-color);
+            position: relative;
         }
 
         .header h1 {
@@ -58,27 +60,40 @@
         }
 
         .language-toggle {
-            margin-top: 20px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 4px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
 
         .language-toggle button {
-            background: var(--secondary-color);
-            color: white;
+            background: transparent;
+            color: var(--text-light);
             border: none;
-            padding: 8px 16px;
-            margin: 0 5px;
-            border-radius: 5px;
+            padding: 6px 12px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 0.9rem;
-            transition: background 0.3s ease;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            min-width: 60px;
         }
 
         .language-toggle button:hover {
-            background: #2980b9;
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--secondary-color);
         }
 
         .language-toggle button.active {
             background: var(--primary-color);
+            color: white;
         }
 
         .back-link {
@@ -154,6 +169,17 @@
             .content {
                 font-size: 1rem;
             }
+
+            .language-toggle {
+                top: 15px;
+                right: 15px;
+            }
+
+            .language-toggle button {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+                min-width: 50px;
+            }
         }
     </style>
 </head>
@@ -161,13 +187,14 @@
     <div class="container">
         <a href="index.html" class="back-link" data-i18n="back">← Voltar</a>
         
+        <div class="language-toggle">
+            <button class="active" onclick="changeLanguage('pt')">PT</button>
+            <button onclick="changeLanguage('en')">EN</button>
+        </div>
+
         <div class="header">
             <h1 data-i18n="title">Manifesto a Transistência</h1>
             <p class="author" data-i18n="author">por Hiure Queiroz</p>
-            <div class="language-toggle">
-                <button class="active" onclick="changeLanguage('pt')">Português</button>
-                <button onclick="changeLanguage('en')">English</button>
-            </div>
         </div>
 
         <div class="content" id="manifestoContent">
@@ -306,7 +333,8 @@
             // Atualiza botões de idioma
             document.querySelectorAll('.language-toggle button').forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.textContent === (lang === 'pt' ? 'Português' : 'English')) {
+                if ((lang === 'pt' && btn.textContent.trim() === 'PT') || 
+                    (lang === 'en' && btn.textContent.trim() === 'EN')) {
                     btn.classList.add('active');
                 }
             });
