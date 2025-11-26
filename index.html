@@ -251,44 +251,6 @@
             background: #2980b9;
         }
 
-        .project-notes {
-            margin-top: 15px;
-        }
-
-        .project-notes label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .project-notes textarea {
-            width: 100%;
-            min-height: 80px;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-family: inherit;
-            font-size: 0.9rem;
-            resize: vertical;
-            transition: border-color 0.3s ease;
-        }
-
-        .project-notes textarea:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-        }
-
-        .project-notes textarea:disabled {
-            background-color: #f5f5f5;
-            cursor: pointer;
-            color: var(--text-light);
-        }
-
-        .project-notes textarea:disabled:hover {
-            border-color: var(--secondary-color);
-        }
 
         footer {
             text-align: center;
@@ -419,11 +381,7 @@
                     en: 'Tool for analyzing domain chains'
                 },
                 image: 'cadeiadominial-screenshot.png',
-                repository: 'https://github.com/transistir/CadeiaDominial',
-                notes: {
-                    pt: '',
-                    en: ''
-                }
+                repository: 'https://github.com/transistir/CadeiaDominial'
             },
             {
                 id: 'kutary',
@@ -436,11 +394,7 @@
                     en: 'Complete application with frontend (Kutary_app) and backend (Kutary_db)'
                 },
                 image: 'kutary-screenshot.png',
-                repository: 'https://github.com/transistir/Kutary_app',
-                notes: {
-                    pt: '',
-                    en: ''
-                }
+                repository: 'https://github.com/transistir/Kutary_app'
             },
             {
                 id: 'ia-local-audio',
@@ -453,11 +407,7 @@
                     en: 'Audio processing system with local artificial intelligence'
                 },
                 image: 'ia-local-audio-screenshot.png',
-                repository: 'https://github.com/transistir/ia-local-audio',
-                notes: {
-                    pt: '',
-                    en: ''
-                }
+                repository: 'https://github.com/transistir/ia-local-audio'
             },
             {
                 id: 'terralab-v2',
@@ -470,11 +420,7 @@
                     en: 'TerraLab is a geospatial information management system based on GeoNode, adapted to meet IIEB needs. The main function of this system is to facilitate access, management and sharing of geospatial data by IIEB team members.'
                 },
                 image: 'terralab-screenshot.png',
-                repository: 'https://github.com/transistir/terralab_v2',
-                notes: {
-                    pt: '',
-                    en: ''
-                }
+                repository: 'https://github.com/transistir/terralab_v2'
             }
         ];
 
@@ -487,8 +433,6 @@
                 readManifesto: 'Ler Manifesto',
                 projectsTitle: 'Projetos',
                 footer: 'Página gerada automaticamente | GitHub Pages',
-                notesLabel: 'Notas pessoais:',
-                notesPlaceholder: 'Clique para adicionar suas notas pessoais sobre este projeto...',
                 viewRepository: 'Ver no GitHub',
                 imageNotFound: 'Imagem não encontrada'
             },
@@ -499,8 +443,6 @@
                 readManifesto: 'Read Manifesto',
                 projectsTitle: 'Projects',
                 footer: 'Auto-generated page | GitHub Pages',
-                notesLabel: 'Personal notes:',
-                notesPlaceholder: 'Click to add your personal notes about this project...',
                 viewRepository: 'View on GitHub',
                 imageNotFound: 'Image not found'
             }
@@ -552,9 +494,6 @@
                     </div>
                 `;
                 
-                const notesValue = project.notes[currentLanguage] || '';
-                const notesPlaceholder = translations[currentLanguage].notesPlaceholder;
-                
                 card.innerHTML = `
                     ${imageHtml}
                     <div class="project-content">
@@ -563,67 +502,14 @@
                         <a href="${project.repository}" target="_blank" rel="noopener noreferrer" class="project-link">
                             ${translations[currentLanguage].viewRepository}
                         </a>
-                        <div class="project-notes">
-                            <label>${translations[currentLanguage].notesLabel}</label>
-                            <textarea 
-                                id="notes-${project.id}" 
-                                placeholder="${notesPlaceholder}"
-                                ${notesValue ? '' : 'disabled'}
-                            >${notesValue}</textarea>
-                        </div>
                     </div>
                 `;
-                
-                // Adiciona evento para tornar o textarea editável ao clicar
-                const textarea = card.querySelector('textarea');
-                if (textarea.disabled) {
-                    textarea.addEventListener('click', function() {
-                        this.disabled = false;
-                        this.focus();
-                    });
-                }
-                
-                // Salva as notas quando o usuário sair do campo
-                textarea.addEventListener('blur', function() {
-                    if (this.value.trim() === '') {
-                        this.disabled = true;
-                    }
-                    // Aqui você pode adicionar lógica para salvar as notas
-                    // Por exemplo, usando localStorage:
-                    saveNotes(project.id, this.value);
-                });
                 
                 grid.appendChild(card);
             });
         }
 
-        // Função para salvar notas (usando localStorage)
-        function saveNotes(projectId, notes) {
-            const key = `project-notes-${projectId}-${currentLanguage}`;
-            localStorage.setItem(key, notes);
-            
-            // Atualiza o objeto do projeto
-            const project = projects.find(p => p.id === projectId);
-            if (project) {
-                project.notes[currentLanguage] = notes;
-            }
-        }
-
-        // Função para carregar notas salvas
-        function loadNotes() {
-            projects.forEach(project => {
-                ['pt', 'en'].forEach(lang => {
-                    const key = `project-notes-${project.id}-${lang}`;
-                    const savedNotes = localStorage.getItem(key);
-                    if (savedNotes) {
-                        project.notes[lang] = savedNotes;
-                    }
-                });
-            });
-        }
-
         // Inicialização
-        loadNotes();
         renderProjects();
     </script>
 </body>
